@@ -4,7 +4,6 @@ import axios from 'axios'
 import { Form, InputGroup, Button } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.css';
 
-var id = 437133
 
 class InputForm extends React.Component {
   constructor(props) {
