@@ -1,7 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import axios from 'axios'
-import { Form, InputGroup, Button } from 'react-bootstrap';
+import { Form, InputGroup, Button, Container } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.css';
 
 
@@ -34,12 +34,16 @@ class InputForm extends React.Component {
 
   handleSubmit(event) {
   
-    axios.get('https://collectionapi.metmuseum.org/public/collection/v1/objects/' + this.state.value, {
+    axios.post('https://apply.veritaschina.org/api/track.php', {
+      query: this.state.value
+    },
+    {
       headers: {
         'Access-Control-Allow-Origin': '*',
-        'Access-Control-Allow-Methods': 'GET',
-      },
-      }).then((response) => this.setState({posts: response.data.title})
+        'Access-Control-Allow-Methods': 'POST',
+      }
+    }
+      ).then((response) => this.setState({posts: response.data.title})
       ).catch(function (error) {
         if (error.response) {
           console.log(error.response.headers);
@@ -58,7 +62,7 @@ class InputForm extends React.Component {
   render() {
     const { posts } = this.state
     return (
-      <div>
+      <Container>
     <Form onSubmit={this.handleSubmit}>
     <InputGroup className="mb-3">
     <Form.Control
@@ -75,7 +79,7 @@ class InputForm extends React.Component {
     </InputGroup>
   </Form>
   <div>{posts}</div>
-  </div>
+  </Container>
     );
   }
 }
