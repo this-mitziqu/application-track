@@ -5,10 +5,24 @@ import { Form, InputGroup, Button } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.css';
 
 
+/*
+现在的api接口是大都会博物馆提供的免费api， 用来test api调用是否正常。
+输入的是艺术作品的id， 会返回他们的title。 
+详见 https://metmuseum.github.io/。
+Example: 
+输入 43713 => 返回 Garden at Sainte-Adresse
+输入 45734 => 返回 Quail and Millet
+输入 43711 => 返回 Bead 
+输入 43222 => 返回 Sceptre
+
+之后可以换成我们自己的api。 艺术品id = 学生的Id， title = application status。 
+
+*/
+
 class InputForm extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {value: 437133};
+    this.state = {value: ''};
     this.state = {posts: []};
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
