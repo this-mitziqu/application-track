@@ -36,14 +36,8 @@ class InputForm extends React.Component {
   
     axios.post('https://apply.veritaschina.org/api/track.php', {
       query: this.state.value
-    },
-    {
-      headers: {
-        'Access-Control-Allow-Origin': '*',
-        'Access-Control-Allow-Methods': 'POST',
-      }
     }
-      ).then((response) => this.setState({posts: response.data.title})
+      ).then((response) => this.setState({posts: JSON.stringify(response.data)})
       ).catch(function (error) {
         if (error.response) {
           console.log(error.response.headers);
