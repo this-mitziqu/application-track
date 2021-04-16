@@ -1,5 +1,7 @@
-import React,{Component} from 'react'
-import ReactDOM from 'react-dom';
+import React from 'react'
+import ReactDOM from 'react-dom'
+import { Form, InputGroup, Button } from 'react-bootstrap';
+import 'bootstrap/dist/css/bootstrap.css';
 
 class InputForm extends React.Component {
   constructor(props) {
@@ -15,19 +17,27 @@ class InputForm extends React.Component {
   }
 
   handleSubmit(event) {
-    alert('A name was submitted: ' + this.state.value);
+    alert('输入的ID为: ' + this.state.value);
     event.preventDefault();
   }
 
   render() {
     return (
-      <form onSubmit={this.handleSubmit}>
-        <label>
-          ID:
-          <input type="text" value={this.state.value} onChange={this.handleChange} />
-        </label>
-        <input type="submit" value="Submit" />
-      </form>
+    <Form onSubmit={this.handleSubmit}>
+    <InputGroup className="mb-3">
+    <Form.Control
+      placeholder="请输入ID"
+      aria-label="请输入ID"
+      aria-describedby="basic-addon2"
+      type="text" 
+      value={this.state.value} 
+      onChange={this.handleChange}
+    />
+    <InputGroup.Append>
+      <Button variant="outline-secondary" type="submit" value="Submit">提交</Button>
+    </InputGroup.Append>
+    </InputGroup>
+  </Form>
     );
   }
 }
@@ -37,4 +47,4 @@ ReactDOM.render(
   document.getElementById('root')
 );
 
-export default {InputForm};
+export default InputForm;
