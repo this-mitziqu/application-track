@@ -3,27 +3,16 @@ import ReactDOM from 'react-dom'
 import axios from 'axios'
 import { Form, InputGroup, Button, Container } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.css';
-
-
-/*
-现在的api接口是大都会博物馆提供的免费api， 用来test api调用是否正常。
-输入的是艺术作品的id， 会返回他们的title。 
-详见 https://metmuseum.github.io/。
-Example: 
-输入 43713 => 返回 Garden at Sainte-Adresse
-输入 45734 => 返回 Quail and Millet
-输入 43711 => 返回 Bead 
-输入 43222 => 返回 Sceptre
-
-之后可以换成我们自己的api。 艺术品id = 学生的Id， title = application status。 
-
-*/
+import ProgressCard from './ProgressCard';
 
 class InputForm extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {value: ''};
-    this.state = {posts: []};
+    this.state = {
+      value: '',
+      result: {},
+      showCard: false
+    };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
@@ -33,11 +22,10 @@ class InputForm extends React.Component {
   }
 
   handleSubmit(event) {
-  
     axios.post('https://apply.veritaschina.org/api/track.php', {
       query: this.state.value
     }
-      ).then((response) => this.setState({posts: JSON.stringify(response.data)})
+      ).then((response) => this.setState({result: response.data[0], showCard: true})
       ).catch(function (error) {
         if (error.response) {
           console.log(error.response.headers);
@@ -54,7 +42,7 @@ class InputForm extends React.Component {
   }
 
   render() {
-    const { posts } = this.state
+    const { result, showCard } = this.state;
     return (
       <Container>
     <Form onSubmit={this.handleSubmit}>
@@ -72,7 +60,13 @@ class InputForm extends React.Component {
     </InputGroup.Append>
     </InputGroup>
   </Form>
-  <div>{posts}</div>
+  <div>Your application status: {result.status}
+  </div> 
+  <div>
+    {
+    showCard?(<ProgressCard result={result} />):null
+    }
+  </div>
   </Container>
     );
   }

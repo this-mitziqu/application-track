@@ -12,7 +12,6 @@ function App() {
     return(
     <Container fluid className="vh-100 d-flex flex-column justify-content-around">
         <InputForm />
-        <ProgressCard />
         <Footer />
     </Container>
     )

@@ -10,7 +10,7 @@ class ProgressCard extends React.Component {
             <Card>
                 <Row className="d-flex justify-content-between px-3 top">
                     <div className="d-flex">
-                        <h5>ORDER <span className="text-primary font-weight-bold">#Y34XDHR</span></h5>
+                        <h5>ID <span className="text-primary font-weight-bold">#{this.props.result.id}</span></h5>
                     </div>
                     <div className="d-flex flex-column text-sm-right">
                         <p className="mb-0">Expected Arrival <span>01/12/19</span></p>
@@ -30,12 +30,12 @@ class ProgressCard extends React.Component {
                 <Row className="justify-content-between top">
                     <Row className="d-flex icon-content">
                         <div className="d-flex flex-column">
-                            <p className="font-weight-bold">Order{"\n"}Processed</p>
+                            <p className="font-weight-bold">申请已提交</p>
                         </div>
                     </Row>
                     <Row className="d-flex icon-content"> 
                         <div className="d-flex flex-column">
-                            <p className="font-weight-bold">Order{"\n"}Shipped</p>
+                            <p className="font-weight-bold">已通过笔试审核</p>
                         </div>
                     </Row>
                     <Row className="d-flex icon-content">
