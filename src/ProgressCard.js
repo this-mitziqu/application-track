@@ -1,36 +1,17 @@
 import React from 'react'
-import ReactDOM from 'react-dom'
 import { Container, Row, Card } from 'react-bootstrap';
 import './ProgressCard.css';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCheck } from '@fortawesome/free-solid-svg-icons/'
+import ProgressBar from './ProgressBar';
 
 class ProgressCard extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            progress: []
+            
         }       
     };
 
-    updateBar() {
-        var myProgress = [];
-        const bound = this.props.result.status;
-        for (var i = 0; i < bound; i++){
-            myProgress[i] = 'active';
-        }
-        this.setState({progress: myProgress});
-    }
 
-    componentDidMount() {
-        this.updateBar();
-    }
-    
-    componentDidUpdate(prevProps) {
-        if(this.props.result !== prevProps.result) {
-            this.updateBar();
-        }
-    }
     
     render() {
      const{progress} = this.state;
@@ -45,7 +26,7 @@ class ProgressCard extends React.Component {
                         <p className="mb-0">Expected Arrival <span>01/12/19</span></p>
                     </div>
                 </Row>
-                <div className="d-flex justify-content-center">
+                {/* <div className="d-flex justify-content-center">
                     <div className="col-12">
                         <ul id="progressbar" className="text-center">
                             <li className={progress[0] + " step0"}></li>
@@ -54,7 +35,8 @@ class ProgressCard extends React.Component {
                             <li className={progress[3] + " step0"}></li>
                         </ul>
                     </div>
-                </div>
+                </div> */}
+                <ProgressBar result={this.props.result} />
                 <Row className="justify-content-between top">
                     <Row className="d-flex icon-content">
                         <div className="d-flex flex-column">

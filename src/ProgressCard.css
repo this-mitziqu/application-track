@@ -27,7 +27,6 @@
   #progressbar li {
     list-style-type: none;
     font-size: 13px;
-    width: 25%;
     float: left;
     position: relative;
     font-weight: 400
@@ -69,10 +68,10 @@
     left: -50%
   }
   
-  #progressbar li:nth-child(2):after,
+  /* #progressbar li:nth-child(2):after,
   #progressbar li:nth-child(3):after {
     left: -50%
-  }
+  } */
   
   #progressbar li:first-child:after {
     border-top-left-radius: 10px;
@@ -96,10 +95,10 @@
     background: #651FFF
   }
   
-  #progressbar li.active:before {
+  /* #progressbar li.active:before {
     font-family: FontAwesome;
-    content: "\f00c"
-  }
+    content: ""
+  } */
   
   .icon {
     width: 60px;
