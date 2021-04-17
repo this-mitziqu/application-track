@@ -6,22 +6,29 @@ import './ProgressCard.css';
 class ProgressCard extends React.Component {
     constructor(props) {
         super(props);
-        var myProgress = []
-        const bound = this.props.result.status
-        for (var i = 0; i < bound; i++){
-            myProgress[i] = 'active'
-            
-        }
         this.state = {
-
-            progress: myProgress
-        }
-        
-
-        //const currStat = this.props.status;        
+            progress: []
+        }       
     };
 
-      
+    updateBar() {
+        var myProgress = [];
+        const bound = this.props.result.status;
+        for (var i = 0; i < bound; i++){
+            myProgress[i] = 'active';
+        }
+        this.setState({progress: myProgress});
+    }
+
+    componentDidMount() {
+        this.updateBar();
+    }
+    
+    componentDidUpdate(prevProps) {
+        if(this.props.result != prevProps.result) {
+            this.updateBar();
+        }
+    }
     
     render() {
      const{progress} = this.state;
@@ -39,10 +46,10 @@ class ProgressCard extends React.Component {
                 <div className="d-flex justify-content-center">
                     <div className="col-12">
                         <ul id="progressbar" className="text-center">
-                            <li className={this.state.progress[0] + " step0"}></li>
-                            <li className={this.state.progress[1] + " step0"}></li>
-                            <li className={this.state.progress[2]+ " step0"}></li>
-                            <li className={this.state.progress[3]+ " step0"}></li>
+                            <li className={progress[0] + " step0"}></li>
+                            <li className={progress[1] + " step0"}></li>
+                            <li className={progress[2]+ " step0"}></li>
+                            <li className={progress[3]+ " step0"}></li>
                         </ul>
                     </div>
                 </div>
