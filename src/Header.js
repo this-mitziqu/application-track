@@ -13,7 +13,7 @@ export default class Header extends React.Component {
                 height="30"
                 className="d-inline-block align-top"
             />{' '}
-            唯理中国申请查询
+            唯理中国申请查询系统
             </Navbar.Brand>
             </Navbar>
         );
