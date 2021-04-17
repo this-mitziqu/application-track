@@ -27,7 +27,7 @@ class InputForm extends React.Component {
     }
       ).then((response) => {
         this.setState({result: response.data[0]});
-        console.log(typeof(this.state.result));
+        // console.log(typeof(this.state.result));
         if (typeof(this.state.result) == "string") {
           alert("你查询的ID不存在");
         } else {
