@@ -1,11 +1,9 @@
 import React from 'react'
-import ReactDOM from 'react-dom'
-import ModalFooter from 'react-bootstrap/ModalFooter'
 import 'bootstrap/dist/css/bootstrap.css';
 import { Container } from 'react-bootstrap';
 
 
-class Footer extends React.Component {
+export default class Footer extends React.Component {
     render() {
         return(
             <Container className="text-center">
@@ -14,5 +12,3 @@ class Footer extends React.Component {
         );
     }
 }
-
-export default Footer;

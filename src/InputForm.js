@@ -25,7 +25,15 @@ class InputForm extends React.Component {
     axios.post('https://apply.veritaschina.org/api/track.php', {
       query: this.state.value
     }
-      ).then((response) => this.setState({result: response.data[0], showCard: true})
+      ).then((response) => {
+        this.setState({result: response.data[0]});
+        console.log(typeof(this.state.result));
+        if (typeof(this.state.result) == "string") {
+          alert("你查询的ID不存在");
+        } else {
+          this.setState({showCard: true});
+        }
+      }
       ).catch(function (error) {
         if (error.response) {
           console.log(error.response.headers);
@@ -47,21 +55,23 @@ class InputForm extends React.Component {
       <Container>
     <Form onSubmit={this.handleSubmit}>
     <InputGroup className="mb-3">
+    <InputGroup.Prepend>
+      <InputGroup.Text>#</InputGroup.Text>
+    </InputGroup.Prepend>
     <Form.Control
-      placeholder="请输入ID"
-      aria-label="请输入ID"
+      placeholder="请输入申请ID"
+      aria-label="请输入申请ID"
       aria-describedby="basic-addon2"
       type="text" 
       value={this.state.value || ''} 
       onChange={this.handleChange}
     />
     <InputGroup.Append>
-      <Button variant="outline-secondary" type="submit" value="Submit">提交</Button>
+      <Button variant="outline-secondary" type="submit" value="Submit">查询进度</Button>
     </InputGroup.Append>
     </InputGroup>
   </Form>
-  <div>Your application status: {result.status}
-  </div> 
+  {/* <div>Your application status: {result.status}</div>  */}
   <div>
     {
     showCard?(<ProgressCard result={result} />):null
