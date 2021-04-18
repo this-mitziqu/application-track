@@ -29,8 +29,11 @@ class ProgressBar extends React.Component {
     }
     
     BarNode() {
-        return [...Array(6)].map((e, i) => (
-            <li key={i} className={this.state.progress[{i}] + " col step0"}><h5 className="pt-5">1</h5></li>
+        var steps = JSON.parse(this.props.result.steps);
+        return [...Array(steps.length)].map((e, i) => (
+            <li key={i} className={this.state.progress[{i}] + " col step0"}>
+                <h6 className="pt-5 font-weight-bold">{steps[i]}</h6>
+            </li>
             ));
     }
 

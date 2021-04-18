@@ -11,7 +11,8 @@ class InputForm extends React.Component {
     this.state = {
       value: '',
       result: {},
-      showCard: false
+      showCard: false,
+      loading: false
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -22,11 +23,12 @@ class InputForm extends React.Component {
   }
 
   handleSubmit(event) {
+    this.setState({showCard: false, loading: true});
     axios.post('https://apply.veritaschina.org/api/track.php', {
       query: this.state.value
     }
       ).then((response) => {
-        this.setState({result: response.data[0]});
+        this.setState({result: response.data[0], loading: false});
         // console.log(typeof(this.state.result));
         if (typeof(this.state.result) == "string") {
           alert("你查询的ID不存在");
@@ -50,28 +52,32 @@ class InputForm extends React.Component {
   }
 
   render() {
-    const { result, showCard } = this.state;
+    const { result, showCard, loading } = this.state;
     return (
-      <Container>
+      <Container className="py-5">
     <Form onSubmit={this.handleSubmit}>
-    <InputGroup className="mb-3">
-    <InputGroup.Prepend>
-      <InputGroup.Text>#</InputGroup.Text>
-    </InputGroup.Prepend>
-    <Form.Control
-      placeholder="请输入申请ID"
-      aria-label="请输入申请ID"
-      aria-describedby="basic-addon2"
-      type="text" 
-      value={this.state.value || ''} 
-      onChange={this.handleChange}
-    />
-    <InputGroup.Append>
-      <Button variant="outline-secondary" type="submit" value="Submit">查询进度</Button>
-    </InputGroup.Append>
-    </InputGroup>
-  </Form>
-  {/* <div>Your application status: {result.status}</div>  */}
+      <InputGroup className="mb-3">
+        <InputGroup.Prepend>
+          <InputGroup.Text>#</InputGroup.Text>
+        </InputGroup.Prepend>
+          <Form.Control
+            placeholder="请输入申请ID"
+            aria-label="请输入申请ID"
+            aria-describedby="basic-addon2"
+            type="text" 
+            value={this.state.value || ''} 
+            onChange={this.handleChange}
+          />
+        <InputGroup.Append>
+          <Button variant="primary" type="submit" value="Submit">查询进度</Button>
+        </InputGroup.Append>
+      </InputGroup>
+    </Form>
+  <div>
+    {
+    loading?(<div>查询中...</div>):null
+    }
+  </div>
   <div>
     {
     showCard?(<ProgressCard result={result} />):null

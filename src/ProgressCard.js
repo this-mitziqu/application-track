@@ -19,25 +19,19 @@ class ProgressCard extends React.Component {
         <Container className="px-1 px-md-4 mx-auto">
             <Card>
                 <Row className="d-flex justify-content-between px-3 pt-4 pb-5 top">
-                    <div className="d-flex">
-                        <h5>ID<span className="text-primary font-weight-bold">#{this.props.result.id}</span></h5>
+                    <div className="d-flex flex-column font-weight-bold">
+                        <p className="mb-0">所属申请：<span>2021唯理工作坊</span></p>
+                        <p className="mb-0">姓名：<span>ABC</span></p>
+                        <p className="mb-0">学校：<span>ADSFGHJ</span></p>
                     </div>
-                    <div className="d-flex flex-column text-sm-right">
-                        <p className="mb-0">Expected Arrival <span>01/12/19</span></p>
+                    <div className="d-flex">
+                        <h5>ID: <span className="text-primary font-weight-bold">#{this.props.result.id}</span></h5>
                     </div>
                 </Row>
-                {/* <div className="d-flex justify-content-center">
-                    <div className="col-12">
-                        <ul id="progressbar" className="text-center">
-                            <li className={progress[0] + " step0"}></li>
-                            <li className={progress[1] + " step0"}></li>
-                            <li className={progress[2] + " step0"}></li>
-                            <li className={progress[3] + " step0"}></li>
-                        </ul>
-                    </div>
-                </div> */}
+
                 <ProgressBar result={this.props.result} />
-                <Row className="justify-content-between top">
+
+                {/* <Row className="justify-content-between top">
                     <Row className="d-flex icon-content">
                         <div className="d-flex flex-column">
                             <p className="font-weight-bold">递交申请</p>
@@ -58,7 +52,7 @@ class ProgressCard extends React.Component {
                             <p className="font-weight-bold">已录取</p>
                         </div>
                     </Row>
-                </Row>
+                </Row> */}
             </Card>
         </Container>
     );
