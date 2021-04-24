@@ -17,31 +17,20 @@ class App extends React.Component {
           result: {},
           showTable: false,
           CardIndex: false,
-          loading: false
         };
     }
 
     handleResult = (response) => {
-        this.setState({result: response.data[0], showTable: true});
+        this.setState({result: response.data, showTable: true});
     }
 
     reset = () => {
         this.setState({result: {}, showTable: false, CardIndex: false});
     }
 
-    getCardIndex = (i) => {
+    showCard = (i) => {
         console.log(i)
         this.setState({showTable: false, CardIndex: i})
-    }
-
-    renderCard(result, CardIndex) {
-            return(
-                CardIndex?(<ProgressCard
-                    result = {result}
-                    index = {CardIndex - 1}
-                    onClick = {()=>this.setState({showTable: true, CardIndex: false})} 
-                />):null
-            )
     }
 
     render() {
@@ -49,17 +38,24 @@ class App extends React.Component {
         return(
             <Container fluid className="min-vh-100 px-0 d-flex flex-column justify-content-between">
                 <Header />
-                <InputForm
-                handleResult = {this.handleResult}
-                reset = {this.reset}
-                />
+                <Container>
+                    <InputForm
+                    handleResult = {this.handleResult}
+                    reset = {this.reset}
+                    />
                     {
                         showTable?(<ResultTable 
                             result={result} 
-                            getCardIndex = {this.getCardIndex}
+                            showCard = {this.showCard}
                             />):null
                     }
-                    {this.renderCard(result, CardIndex)}
+                    {
+                        CardIndex?(<ProgressCard
+                            app = {result[CardIndex - 1]}
+                            onClick = {()=>this.setState({showTable: true, CardIndex: false})} 
+                        />):null
+                    }
+                </Container>
                 <Footer />
             </Container>
         )

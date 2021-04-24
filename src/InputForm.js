@@ -3,13 +3,13 @@ import ReactDOM from 'react-dom'
 import axios from 'axios'
 import { Form, InputGroup, Button, Container } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.css';
-import ProgressCard from './ProgressCard';
 
 class InputForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      value: '607ac1157223e',
+      value: '',
+      loading: false
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -21,11 +21,12 @@ class InputForm extends React.Component {
 
   handleSubmit(event) {
     this.props.reset();
+    this.setState({loading: true});
     axios.post('https://apply.veritaschina.org/api/track.php', {
       query: this.state.value
     }
       ).then((response) => {
-        // console.log(response);
+        this.setState({loading: false});
         if (typeof(response.data) == "string") {
           alert("你查询的ID不存在");
         } else {
@@ -56,8 +57,8 @@ class InputForm extends React.Component {
           <InputGroup.Text>#</InputGroup.Text>
         </InputGroup.Prepend>
           <Form.Control
-            placeholder="请输入申请ID"
-            aria-label="请输入申请ID"
+            placeholder="请输入个人ID或申请ID"
+            aria-label="请输入个人ID或申请ID"
             aria-describedby="basic-addon2"
             type="text" 
             value={this.state.value || ''} 
@@ -68,11 +69,11 @@ class InputForm extends React.Component {
         </InputGroup.Append>
       </InputGroup>
     </Form>
-  {/* <div>
+  <div>
     {
-    loading?(<div>查询中...</div>):null
+      this.state.loading?(<div>查询中...</div>):null
     }
-  </div> */}
+  </div>
   </Container>
     );
   }

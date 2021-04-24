@@ -11,14 +11,14 @@ class ResultTable extends React.Component {
 
     renderTable() {
         const result = this.props.result;
-        return JSON.parse(result.trackInfo).map((branch, i) => {
+        return result.map((app, i) => {
             return(
-                    <tr key={i}>
+                    <tr key={i+1}>
                     <td>{i+1}</td>
-                    <td>{result.id}</td>
-                    <td>{result.appName}</td>
-                    <td>{branch.branchName}</td>
-                    <td><Button variant="primary" onClick={()=>this.props.getCardIndex(i+1)}>点击查看</Button></td>
+                    <td>{app.person_id}</td>
+                    <td>{app.id}</td>
+                    <td>{app.appName}</td>
+                    <td><Button variant="primary" onClick={()=>this.props.showCard(i+1)}>点击查看</Button></td>
                     </tr>
             )
         })
@@ -32,9 +32,9 @@ class ResultTable extends React.Component {
                 <thead>
                     <tr>
                     <th>序号</th>
+                    <th>个人ID</th>
                     <th>申请ID</th>
                     <th>申请/报名类别</th>
-                    <th>分支</th>
                     <th>申请状态</th>
                     </tr>
                 </thead>
