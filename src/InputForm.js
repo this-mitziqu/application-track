@@ -9,10 +9,7 @@ class InputForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      value: '',
-      result: {},
-      showCard: false,
-      loading: false
+      value: '607ac1157223e',
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -23,17 +20,16 @@ class InputForm extends React.Component {
   }
 
   handleSubmit(event) {
-    this.setState({showCard: false, loading: true});
+    this.props.reset();
     axios.post('https://apply.veritaschina.org/api/track.php', {
       query: this.state.value
     }
       ).then((response) => {
-        this.setState({result: response.data[0], loading: false});
-        // console.log(typeof(this.state.result));
-        if (typeof(this.state.result) == "string") {
+        // console.log(response);
+        if (typeof(response.data) == "string") {
           alert("你查询的ID不存在");
         } else {
-          this.setState({showCard: true});
+          this.props.handleResult(response);
         }
       }
       ).catch(function (error) {
@@ -52,7 +48,6 @@ class InputForm extends React.Component {
   }
 
   render() {
-    const { result, showCard, loading } = this.state;
     return (
       <Container className="py-5">
     <Form onSubmit={this.handleSubmit}>
@@ -73,16 +68,11 @@ class InputForm extends React.Component {
         </InputGroup.Append>
       </InputGroup>
     </Form>
-  <div>
+  {/* <div>
     {
     loading?(<div>查询中...</div>):null
     }
-  </div>
-  <div>
-    {
-    showCard?(<ProgressCard result={result} />):null
-    }
-  </div>
+  </div> */}
   </Container>
     );
   }

@@ -11,7 +11,7 @@ class ProgressBar extends React.Component {
 
     updateBar() {
     var myProgress = [];
-    const bound = this.props.result.status;
+    const bound = this.props.info.status;
     for (var i = 0; i < bound; i++){
         myProgress[i] = 'active';
     }
@@ -23,19 +23,19 @@ class ProgressBar extends React.Component {
     }
 
     componentDidUpdate(prevProps) {
-        if(this.props.result !== prevProps.result) {
+        if(this.props.info !== prevProps.info) {
             this.updateBar();
         }
     }
     
     BarNode() {
-        var steps;
-        if (this.props.result.steps == 'null') {
-            steps = Array(4);
-        }
-        else {
-            steps = JSON.parse(this.props.result.steps);
-        }
+        var steps = this.props.info.steps;
+        // if (this.props.info.steps === 'null') {
+        //     steps = Array(4);
+        // }
+        // else {
+        //     steps = JSON.parse(this.props.info.steps);
+        // }
         return [...Array(steps.length)].map((e, i) => (
             <li key={i} className={this.state.progress[i] + " col step0"}>
                 <h6 className="pt-5 font-weight-bold">{steps[i]}</h6>
