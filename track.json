@@ -1,37 +1,24 @@
 [
     {
-        "data": [
-            {
-                "id": "607ac1157223e",
-                "appName": "2021唯理工作坊",
-                "trackInfo": [
-                    {
-                        "branchName": "XX",
-                        "status": 3,
-                        "lastUpdateTime": "2021-01-01",
-                        "steps": [
-                            "已提交报名",
-                            "报名表已通过审核",
-                            "已面试",
-                            "已录取"
-                        ]
-                    },
-                    {
-                        "branchName": "YY",
-                        "status": 3,
-                        "lastUpdateTime": "2021-01-01",
-                        "steps": [
-                            "已提交报名",
-                            "报名表已通过审核",
-                            "已面试",
-                            "已录取"
-                        ]
-                    }
-                ],
-                "submission": {
-                    a json object (from user input)
-                }
-            }
-        ]
+        "steps": [
+            "已提交报名",
+            "报名表已通过审核",
+            "已面试",
+            "已录取"
+        ],
+        "status": 3,
+        "branchName": "XX",
+        "lastUpdateTime": "2021-01-01"
+    },
+    {
+        "steps": [
+            "已提交报名",
+            "报名表已通过审核",
+            "已面试",
+            "已录取"
+        ],
+        "status": 3,
+        "branchName": "YY",
+        "lastUpdateTime": "2021-01-01"
     }
 ]

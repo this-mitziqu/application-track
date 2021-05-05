@@ -12,8 +12,8 @@ class ProgressCard extends React.Component {
                     <Row className="d-flex justify-content-between px-3 pt-4 pb-5 top">
                         <div className="d-flex flex-column font-weight-bold">
                             <p className="mb-0">所属申请：<span>{this.props.app.appName+' - '+branch.branchName}</span></p>
-                            <p className="mb-0">姓名：<span>{}</span></p>
-                            <p className="mb-0">学校：<span>{}</span></p>
+                            <p className="mb-0">姓名：<span>{this.props.app.name}</span></p>
+                            <p className="mb-0">学校：<span>{this.props.app.school}</span></p>
                         </div>
                         <div className="d-flex">
                             <h5>ID: <span className="text-primary font-weight-bold">#{this.props.app.id}</span></h5>

@@ -15,7 +15,7 @@ class ResultTable extends React.Component {
             return(
                     <tr key={i+1}>
                     <td>{i+1}</td>
-                    <td>{app.person_id}</td>
+                    <td>{app.user_id}</td>
                     <td>{app.id}</td>
                     <td>{app.appName}</td>
                     <td><Button variant="primary" onClick={()=>this.props.showCard(i+1)}>点击查看</Button></td>
