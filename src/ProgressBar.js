@@ -11,9 +11,11 @@ class ProgressBar extends React.Component {
 
     updateBar() {
     var myProgress = [];
-    const bound = this.props.info.status;
-    for (var i = 0; i < bound; i++){
-        myProgress[i] = 'active';
+    const steps = this.props.info.steps;
+    for (var i = 0; i < steps.length; i++){
+        if(steps[i].stepStatus === "true") {
+            myProgress[i] = 'active';
+        }
     }
     this.setState({progress: myProgress});
 }
@@ -38,7 +40,7 @@ class ProgressBar extends React.Component {
         // }
         return [...Array(steps.length)].map((e, i) => (
             <li key={i} className={this.state.progress[i] + " col step0"}>
-                <h6 className="pt-5 font-weight-bold">{steps[i]}</h6>
+                <h6 className="pt-5 font-weight-bold">{steps[i].stepName}</h6>
             </li>
             ));
     }
