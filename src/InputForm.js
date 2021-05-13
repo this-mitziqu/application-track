@@ -27,7 +27,7 @@ class InputForm extends React.Component {
     }
       ).then((response) => {
         this.setState({loading: false});
-        if (typeof(response.data) == "string") {
+        if (typeof(response.data) == "string" || response.data.length === 0) {
           alert("你查询的ID不存在");
         } else {
           this.props.handleResult(response);
@@ -57,8 +57,8 @@ class InputForm extends React.Component {
           <InputGroup.Text>#</InputGroup.Text>
         </InputGroup.Prepend>
           <Form.Control
-            placeholder="请输入个人ID或申请ID"
-            aria-label="请输入个人ID或申请ID"
+            placeholder="请输入个人ID或申请/报名ID"
+            aria-label="请输入个人ID或申请/报名ID"
             aria-describedby="basic-addon2"
             type="text" 
             value={this.state.value || ''} 
