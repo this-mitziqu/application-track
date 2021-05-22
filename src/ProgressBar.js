@@ -16,6 +16,12 @@ class ProgressBar extends React.Component {
         if(steps[i].stepStatus === "true") {
             myProgress[i] = 'active';
         }
+        else if(steps[i].stepStatus === "skipped") {
+            myProgress[i] = 'skipped';
+        }
+        else if(steps[i].stepStatus === "rejected") {
+            myProgress[i] = 'rejected';
+        }
     }
     this.setState({progress: myProgress});
 }

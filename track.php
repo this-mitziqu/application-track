@@ -4,17 +4,29 @@
 //    $fromUrl="https://www.veritaschina.org/private/shudong/";
 
 // if($_SERVER['HTTP_REFERER'] == $fromUrl) {
-    $connection = mysqli_connect($host, $user, $pass, $db) or die("Unable to connect!");
     $_POST = json_decode(file_get_contents("php://input"),true);
-    $search = mysqli_real_escape_string($connection, $_POST["query"]);
-    mysqli_set_charset($connection,"utf8mb4");
+    $search = $_POST["query"];
+    $conn = new mysqli($host, $user, $pass, $db) or die("连接失败");
+    // $search = mysqli_real_escape_string($conn, $_POST["query"]);
+    
+    $conn->set_charset("utf8mb4");
     $select = "SELECT t.user_id, t.id, t.appName, t.trackInfo, p.name, p.school FROM people as p inner JOIN track as t on p.id = t.user_id WHERE ";
     if(strlen($search)<15) {
-         $select .= "p.id='$search'";
+         $select .= "p.id=?";
     } else {
-        $select .= "t.id='$search'";
+        $select .= "t.id=?";
     }
-    $result = mysqli_query($connection, $select) or die(mysqli_error());
+
+    $stmt = $conn->prepare($select);
+    $stmt->bind_param('s', $search);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $stmt->fetch();
+    $stmt->close();
+
+    $conn->close();
+
+    // $result = mysqli_query($conn, $select) or die(mysqli_error());
 
     $array = array();
 

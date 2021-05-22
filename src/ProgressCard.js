@@ -15,11 +15,14 @@ class ProgressCard extends React.Component {
                             <p className="mb-0">姓名：<span>{this.props.app.name}</span></p>
                             <p className="mb-0">学校：<span>{this.props.app.school}</span></p>
                         </div>
-                        <div className="d-flex">
-                            <h5>ID: <span className="text-primary font-weight-bold">#{this.props.app.id}</span></h5>
+                        <div className="d-flex flex-column">
+                            <h5 className="font-weight-bold">ID: <span className="text-primary">#{this.props.app.id}</span></h5>
                         </div>
                     </Row>
                     <ProgressBar info = {branch} />
+                    <div className="my-2">
+                        <h6 className="font-weight-bold text-center">最后更新时间：<span className="text-primary">{branch.lastUpdateTime}</span></h6>
+                    </div>
                 </Card>
             )
         })

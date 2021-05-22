@@ -58,14 +58,8 @@
     position: absolute;
     left: 0;
     top: 16px;
-    z-index: -1
-  }
-  
-  #progressbar li:last-child:after {
-    border-top-right-radius: 10px;
-    border-bottom-right-radius: 10px;
-    position: absolute;
-    left: -50%
+    z-index: -1;
+    left: 50%;
   }
   
   /* #progressbar li:nth-child(2):after,
@@ -78,6 +72,13 @@
     border-bottom-left-radius: 10px;
     position: absolute;
     left: 50%
+  }
+
+  #progressbar li:last-child:after {
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    position: absolute;
+    left: -50%
   }
   
   #progressbar li:last-child:after {
@@ -92,7 +93,21 @@
   
   #progressbar li.active:before,
   #progressbar li.active:after {
-    background: #651FFF
+    background: #651FFF;
+  }
+
+  #progressbar li.skipped:before {
+    background: #AAA;
+  }
+  #progressbar li.skipped:after {
+    background: #651FFF;
+  }
+
+  #progressbar li.rejected:before {
+    background: rgb(255, 0, 0);
+  }
+  #progressbar li.rejected:after {
+    background: #651FFF;
   }
   
   /* #progressbar li.active:before {
