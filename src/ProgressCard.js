@@ -21,7 +21,7 @@ class ProgressCard extends React.Component {
                     </Row>
                     <ProgressBar info = {branch} />
                     <div className="my-2">
-                        <h6 className="font-weight-bold text-center">最后更新时间：<span className="text-primary">{branch.lastUpdateTime}</span></h6>
+                        <h6 className="font-weight-bold text-center">最近更新时间：<span className="text-primary">{branch.lastUpdateTime}</span></h6>
                     </div>
                 </Card>
             )
